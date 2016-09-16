@@ -1,0 +1,33 @@
+﻿@model RellenoBD.material
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalles de Material</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre Archivo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Archivo)
+        </dd>
+
+        <dt>
+            Asignatura
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.asignatura.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a Lista", "Index")
+</p>

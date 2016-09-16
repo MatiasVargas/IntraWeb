@@ -1,0 +1,25 @@
+﻿@model IEnumerable<RellenoBD.dia>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Días de la Semana</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Día
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dia_Semana)
+        </td>
+    </tr>
+}
+
+</table>

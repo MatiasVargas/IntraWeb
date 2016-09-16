@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("BDMovil", "Index", "Home", new { area = "" }, new { @class = "navbar-brand"})
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>                     
+                    <li><div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:gray; margin-top: 8px">
+                            Crear
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Alumno", "Index", "Alumno")</li>
+                            <li>@Html.ActionLink("Asignatura", "Index", "Asignatura")</li>
+                            <li>@Html.ActionLink("Asistencia", "Index", "asistencia")</li>
+                            <li>@Html.ActionLink("Carrera", "Index", "Carrera")</li>                                    
+                            <li>@Html.ActionLink("Docentes", "Index", "docente")</li>        
+                            <li>@Html.ActionLink("Horario", "Index", "Horario")</li>                                       
+                            <li>@Html.ActionLink("Jefe de Carrera", "Index", "jefecarrera")</li>
+                            <li>@Html.ActionLink("Materiales", "Index", "material")</li>   
+                            <li>@Html.ActionLink("Notas", "Index", "nota")</li>                         
+                            <li>@Html.ActionLink("Pagos", "Index", "pago")</li>     
+                            <li>@Html.ActionLink("Salas", "Index", "sala")</li>                       
+                            <li>@Html.ActionLink("Sección", "Index", "seccion")</li>                            
+                        </ul>
+                    </div>
+                    </li>
+                
+                    <li>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color:gray; margin-top: 8px">
+                                Asociacion
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Asignatura de Carrera", "Index", "carrera_asignatura")</li>
+                                <li>@Html.ActionLink("Horario de Seccion", "Index", "Horario_seccion")</li>  
+                                <li>@Html.ActionLink("Jefes de Cada Carrera", "Index", "carrera_jefecarrera")</li>  
+                                <li>@Html.ActionLink("Seccion de Alumno", "Index", "alumno_seccion")</li>                      
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

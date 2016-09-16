@@ -1,0 +1,25 @@
+﻿@model RellenoBD.dia
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalles de Día</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Día
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia_Semana)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a Lista", "Index")
+</p>

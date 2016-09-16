@@ -1,0 +1,39 @@
+﻿@model RellenoBD.alumno_has_seccion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Sección de Alumno</h2>
+
+<h3 style="color:red">¿Estás Seguro que quieres eliminar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Alumno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno.Nombre)
+        </dd>
+
+        <dt>
+            Sección
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seccion.Id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver Lista", "Index")
+        </div>
+    }
+</div>

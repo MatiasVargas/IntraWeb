@@ -1,0 +1,47 @@
+﻿@model RellenoBD.horario
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar Horario</h2>
+
+<h3 style="color:red">¿Estás Seguro que quieres eliminar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Hora Inicio
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraInicio)
+        </dd>
+
+        <dt>
+            Hora Fin
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraFin)
+        </dd>
+
+        <dt>
+            Día
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dia.Dia_Semana)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a Lista", "Index")
+        </div>
+    }
+</div>

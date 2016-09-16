@@ -1,0 +1,47 @@
+﻿@model RellenoBD.asistencia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Asistencia</h2>
+
+<h3 style="color:red">¿Estás Seguro que quieres eliminar esto?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Horas Asistidas
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorasAsist)
+        </dd>
+
+        <dt>
+            Alumno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno.Nombre)
+        </dd>
+
+        <dt>
+            Seccion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno_has_seccion.Alumno_Rut)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a Lista", "Index")
+        </div>
+    }
+</div>

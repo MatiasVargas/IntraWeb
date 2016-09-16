@@ -1,0 +1,51 @@
+﻿@model IEnumerable<RellenoBD.alumno>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Alumnos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Rut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            Carrera
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.carrera.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Rut }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Rut }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Rut })
+        </td>
+    </tr>
+}
+
+</table>

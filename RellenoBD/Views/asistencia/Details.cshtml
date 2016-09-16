@@ -1,0 +1,41 @@
+﻿@model RellenoBD.asistencia
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles de Asistencia</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Horas Asistidas
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HorasAsist)
+        </dd>
+
+        <dt>
+            Alumno
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno.Nombre)
+        </dd>
+
+        <dt>
+            Sección
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno_has_seccion.Alumno_Rut)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a Lista", "Index")
+</p>

@@ -1,0 +1,48 @@
+﻿@model RellenoBD.alumno
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalles de Alumno</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Rut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rut)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            Carrera
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carrera.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Rut }) |
+    @Html.ActionLink("Volver a Lista", "Index")
+</p>

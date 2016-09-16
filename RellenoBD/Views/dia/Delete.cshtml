@@ -1,0 +1,31 @@
+﻿@model RellenoBD.dia
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar Dia</h2>
+
+<h3 style="color:red">No deberias eliminar esto ¿Estás Seguro que quieres eliminarlo?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Día
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dia_Semana)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a Lista", "Index")
+        </div>
+    }
+</div>

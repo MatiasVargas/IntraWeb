@@ -1,0 +1,33 @@
+﻿@model RellenoBD.carrera_jefecarrera
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalles Jefe de Carrera - Carrera</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Carrera
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.carrera.Nombre)
+        </dd>
+
+        <dt>
+            Jefe de Carrera
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jefecarrera.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a Lista", "Index")
+</p>

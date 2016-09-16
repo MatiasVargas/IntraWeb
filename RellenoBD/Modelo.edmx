@@ -1,0 +1,1393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="inacapbdModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="alarma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Asunto" Type="varchar" MaxLength="45" />
+          <Property Name="Dia_Hora" Type="datetime" Precision="0" />
+        </EntityType>
+        <EntityType Name="alumno">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Carrera_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="alumno_has_alarma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Alumno_Rut" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Alarma_Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="alumno_has_seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seccion_Id" Type="int" Nullable="false" />
+          <Property Name="Alumno_Rut" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="asignatura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="Horas" Type="int" />
+        </EntityType>
+        <EntityType Name="asistencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HorasAsist" Type="int" />
+          <Property Name="Alumno_Rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Alumno_has_Seccion_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="carrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="MontoAnual" Type="int" />
+        </EntityType>
+        <EntityType Name="carrera_asignatura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Carrera_Id" Type="int" Nullable="false" />
+          <Property Name="Asignatura_Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="carrera_jefecarrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Carrera_Id" Type="int" Nullable="false" />
+          <Property Name="JefeCarrera_Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="dia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dia_Semana" Type="varchar" MaxLength="9" />
+        </EntityType>
+        <EntityType Name="docente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="Correo" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="horario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoraInicio" Type="time" Precision="0" />
+          <Property Name="HoraFin" Type="time" Precision="0" />
+          <Property Name="Dia_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="horario_seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Horario_Id" Type="int" Nullable="false" />
+          <Property Name="Seccion_Id" Type="int" Nullable="false" />
+          <Property Name="Sala_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="horarios_has_sala">
+          <Key>
+            <PropertyRef Name="Sala_Id" />
+          </Key>
+          <Property Name="Sala_Id" Type="int" Nullable="false" />
+          <Property Name="Horarios_has_Seccion_Horarios_Id" Type="int" Nullable="false" />
+          <Property Name="Horarios_has_Seccion_Seccion_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jefecarrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" />
+          <Property Name="Correo" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Archivo" Type="varchar" MaxLength="45" />
+          <Property Name="Asignatura_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="nota">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nota" Type="decimal" Precision="2" Scale="1" />
+          <Property Name="Ponderacion" Type="int" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Alumno_Rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Seccion_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="15" />
+          <Property Name="FechaVenc" Type="date" />
+          <Property Name="Concepto" Type="varchar" MaxLength="45" />
+          <Property Name="Monto" Type="int" />
+          <Property Name="Alumno_Rut" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sala">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+          <Property Name="Piso" Type="int" />
+        </EntityType>
+        <EntityType Name="seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Numero" Type="int" />
+          <Property Name="Docente_Id" Type="int" Nullable="false" />
+          <Property Name="Asignatura_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Alumno_Carrera">
+          <End Role="carrera" Type="Self.carrera" Multiplicity="1" />
+          <End Role="alumno" Type="Self.alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_has_Alarma_Alarma1">
+          <End Role="alarma" Type="Self.alarma" Multiplicity="1" />
+          <End Role="alumno_has_alarma" Type="Self.alumno_has_alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alarma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alumno_has_alarma">
+              <PropertyRef Name="Alarma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_has_Alarma_Alumno1">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+          <End Role="alumno_has_alarma" Type="Self.alumno_has_alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="alumno_has_alarma">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_has_Seccion_Alumno1">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+          <End Role="alumno_has_seccion" Type="Self.alumno_has_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="alumno_has_seccion">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_has_Seccion_Seccion1">
+          <End Role="seccion" Type="Self.seccion" Multiplicity="1" />
+          <End Role="alumno_has_seccion" Type="Self.alumno_has_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alumno_has_seccion">
+              <PropertyRef Name="Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Asistencia_Alumno_has_Seccion1">
+          <End Role="alumno_has_seccion" Type="Self.alumno_has_seccion" Multiplicity="1" />
+          <End Role="asistencia" Type="Self.asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno_has_seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="Alumno_has_Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Asistencia_Alumno1">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+          <End Role="asistencia" Type="Self.asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_Asignatura_Asignatura1">
+          <End Role="asignatura" Type="Self.asignatura" Multiplicity="1" />
+          <End Role="carrera_asignatura" Type="Self.carrera_asignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignatura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_asignatura">
+              <PropertyRef Name="Asignatura_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_Asignatura_Carrera1">
+          <End Role="carrera" Type="Self.carrera" Multiplicity="1" />
+          <End Role="carrera_asignatura" Type="Self.carrera_asignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_asignatura">
+              <PropertyRef Name="Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_JefeCarrera_Carrera1">
+          <End Role="carrera" Type="Self.carrera" Multiplicity="1" />
+          <End Role="carrera_jefecarrera" Type="Self.carrera_jefecarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_jefecarrera">
+              <PropertyRef Name="Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_JefeCarrera_JefeCarrera1">
+          <End Role="jefecarrera" Type="Self.jefecarrera" Multiplicity="1" />
+          <End Role="carrera_jefecarrera" Type="Self.carrera_jefecarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jefecarrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_jefecarrera">
+              <PropertyRef Name="JefeCarrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Dia1">
+          <End Role="dia" Type="Self.dia" Multiplicity="1" />
+          <End Role="horario" Type="Self.horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="Dia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Seccion_Horario1">
+          <End Role="horario" Type="Self.horario" Multiplicity="1" />
+          <End Role="horario_seccion" Type="Self.horario_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario_seccion">
+              <PropertyRef Name="Horario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Seccion_Sala1">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="horario_seccion" Type="Self.horario_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario_seccion">
+              <PropertyRef Name="Sala_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Seccion_Seccion1">
+          <End Role="seccion" Type="Self.seccion" Multiplicity="1" />
+          <End Role="horario_seccion" Type="Self.horario_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario_seccion">
+              <PropertyRef Name="Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horarios_has_Sala_Sala1">
+          <End Role="sala" Type="Self.sala" Multiplicity="1" />
+          <End Role="horarios_has_sala" Type="Self.horarios_has_sala" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horarios_has_sala">
+              <PropertyRef Name="Sala_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Materiales_Asignatura1">
+          <End Role="asignatura" Type="Self.asignatura" Multiplicity="1" />
+          <End Role="material" Type="Self.material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignatura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="Asignatura_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Notas_Alumno1">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+          <End Role="nota" Type="Self.nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="nota">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Notas_Seccion1">
+          <End Role="seccion" Type="Self.seccion" Multiplicity="1" />
+          <End Role="nota" Type="Self.nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="nota">
+              <PropertyRef Name="Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pagos_Alumno1">
+          <End Role="alumno" Type="Self.alumno" Multiplicity="1" />
+          <End Role="pago" Type="Self.pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="pago">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Seccion_Asignatura1">
+          <End Role="asignatura" Type="Self.asignatura" Multiplicity="1" />
+          <End Role="seccion" Type="Self.seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignatura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="seccion">
+              <PropertyRef Name="Asignatura_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Seccion_Docente1">
+          <End Role="docente" Type="Self.docente" Multiplicity="1" />
+          <End Role="seccion" Type="Self.seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="docente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="seccion">
+              <PropertyRef Name="Docente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="inacapbdModelStoreContainer">
+          <EntitySet Name="alarma" EntityType="Self.alarma" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="alumno" EntityType="Self.alumno" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="alumno_has_alarma" EntityType="Self.alumno_has_alarma" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="alumno_has_seccion" EntityType="Self.alumno_has_seccion" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="asignatura" EntityType="Self.asignatura" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="asistencia" EntityType="Self.asistencia" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="carrera" EntityType="Self.carrera" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="carrera_asignatura" EntityType="Self.carrera_asignatura" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="carrera_jefecarrera" EntityType="Self.carrera_jefecarrera" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="dia" EntityType="Self.dia" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="docente" EntityType="Self.docente" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="horario" EntityType="Self.horario" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="horario_seccion" EntityType="Self.horario_seccion" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="horarios_has_sala" EntityType="Self.horarios_has_sala" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="jefecarrera" EntityType="Self.jefecarrera" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="material" EntityType="Self.material" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="nota" EntityType="Self.nota" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="pago" EntityType="Self.pago" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="sala" EntityType="Self.sala" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="seccion" EntityType="Self.seccion" Schema="inacapbd" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="inacapbd" store:Type="Tables" />
+          <AssociationSet Name="fk_Alumno_Carrera" Association="Self.fk_Alumno_Carrera">
+            <End Role="carrera" EntitySet="carrera" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_has_Alarma_Alarma1" Association="Self.fk_Alumno_has_Alarma_Alarma1">
+            <End Role="alarma" EntitySet="alarma" />
+            <End Role="alumno_has_alarma" EntitySet="alumno_has_alarma" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_has_Alarma_Alumno1" Association="Self.fk_Alumno_has_Alarma_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumno_has_alarma" EntitySet="alumno_has_alarma" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_has_Seccion_Alumno1" Association="Self.fk_Alumno_has_Seccion_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumno_has_seccion" EntitySet="alumno_has_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_has_Seccion_Seccion1" Association="Self.fk_Alumno_has_Seccion_Seccion1">
+            <End Role="seccion" EntitySet="seccion" />
+            <End Role="alumno_has_seccion" EntitySet="alumno_has_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Asistencia_Alumno_has_Seccion1" Association="Self.fk_Asistencia_Alumno_has_Seccion1">
+            <End Role="alumno_has_seccion" EntitySet="alumno_has_seccion" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Asistencia_Alumno1" Association="Self.fk_Asistencia_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_Asignatura_Asignatura1" Association="Self.fk_Carrera_has_Asignatura_Asignatura1">
+            <End Role="asignatura" EntitySet="asignatura" />
+            <End Role="carrera_asignatura" EntitySet="carrera_asignatura" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_Asignatura_Carrera1" Association="Self.fk_Carrera_has_Asignatura_Carrera1">
+            <End Role="carrera" EntitySet="carrera" />
+            <End Role="carrera_asignatura" EntitySet="carrera_asignatura" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_JefeCarrera_Carrera1" Association="Self.fk_Carrera_has_JefeCarrera_Carrera1">
+            <End Role="carrera" EntitySet="carrera" />
+            <End Role="carrera_jefecarrera" EntitySet="carrera_jefecarrera" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_JefeCarrera_JefeCarrera1" Association="Self.fk_Carrera_has_JefeCarrera_JefeCarrera1">
+            <End Role="jefecarrera" EntitySet="jefecarrera" />
+            <End Role="carrera_jefecarrera" EntitySet="carrera_jefecarrera" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Dia1" Association="Self.fk_Horario_Dia1">
+            <End Role="dia" EntitySet="dia" />
+            <End Role="horario" EntitySet="horario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Seccion_Horario1" Association="Self.fk_Horario_Seccion_Horario1">
+            <End Role="horario" EntitySet="horario" />
+            <End Role="horario_seccion" EntitySet="horario_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Seccion_Sala1" Association="Self.fk_Horario_Seccion_Sala1">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="horario_seccion" EntitySet="horario_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Seccion_Seccion1" Association="Self.fk_Horario_Seccion_Seccion1">
+            <End Role="seccion" EntitySet="seccion" />
+            <End Role="horario_seccion" EntitySet="horario_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horarios_has_Sala_Sala1" Association="Self.fk_Horarios_has_Sala_Sala1">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="horarios_has_sala" EntitySet="horarios_has_sala" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Materiales_Asignatura1" Association="Self.fk_Materiales_Asignatura1">
+            <End Role="asignatura" EntitySet="asignatura" />
+            <End Role="material" EntitySet="material" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Notas_Alumno1" Association="Self.fk_Notas_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="nota" EntitySet="nota" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Notas_Seccion1" Association="Self.fk_Notas_Seccion1">
+            <End Role="seccion" EntitySet="seccion" />
+            <End Role="nota" EntitySet="nota" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pagos_Alumno1" Association="Self.fk_Pagos_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="pago" EntitySet="pago" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Seccion_Asignatura1" Association="Self.fk_Seccion_Asignatura1">
+            <End Role="asignatura" EntitySet="asignatura" />
+            <End Role="seccion" EntitySet="seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Seccion_Docente1" Association="Self.fk_Seccion_Docente1">
+            <End Role="docente" EntitySet="docente" />
+            <End Role="seccion" EntitySet="seccion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="inacapbdModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BD" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="alarma" EntityType="inacapbdModel.alarma" />
+          <EntitySet Name="alumno" EntityType="inacapbdModel.alumno" />
+          <EntitySet Name="alumno_has_alarma" EntityType="inacapbdModel.alumno_has_alarma" />
+          <EntitySet Name="alumno_has_seccion" EntityType="inacapbdModel.alumno_has_seccion" />
+          <EntitySet Name="asignatura" EntityType="inacapbdModel.asignatura" />
+          <EntitySet Name="asistencia" EntityType="inacapbdModel.asistencia" />
+          <EntitySet Name="carrera" EntityType="inacapbdModel.carrera" />
+          <EntitySet Name="carrera_asignatura" EntityType="inacapbdModel.carrera_asignatura" />
+          <EntitySet Name="carrera_jefecarrera" EntityType="inacapbdModel.carrera_jefecarrera" />
+          <EntitySet Name="dia" EntityType="inacapbdModel.dia" />
+          <EntitySet Name="docente" EntityType="inacapbdModel.docente" />
+          <EntitySet Name="horario" EntityType="inacapbdModel.horario" />
+          <EntitySet Name="horario_seccion" EntityType="inacapbdModel.horario_seccion" />
+          <EntitySet Name="horarios_has_sala" EntityType="inacapbdModel.horarios_has_sala" />
+          <EntitySet Name="jefecarrera" EntityType="inacapbdModel.jefecarrera" />
+          <EntitySet Name="material" EntityType="inacapbdModel.material" />
+          <EntitySet Name="nota" EntityType="inacapbdModel.nota" />
+          <EntitySet Name="pago" EntityType="inacapbdModel.pago" />
+          <EntitySet Name="sala" EntityType="inacapbdModel.sala" />
+          <EntitySet Name="seccion" EntityType="inacapbdModel.seccion" />
+          <EntitySet Name="usuario" EntityType="inacapbdModel.usuario" />
+          <AssociationSet Name="fk_Alumno_has_Alarma_Alarma1" Association="inacapbdModel.fk_Alumno_has_Alarma_Alarma1">
+            <End Role="alarma" EntitySet="alarma" />
+            <End Role="alumno_has_alarma" EntitySet="alumno_has_alarma" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_Carrera" Association="inacapbdModel.fk_Alumno_Carrera">
+            <End Role="carrera" EntitySet="carrera" />
+            <End Role="alumno" EntitySet="alumno" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_has_Alarma_Alumno1" Association="inacapbdModel.fk_Alumno_has_Alarma_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumno_has_alarma" EntitySet="alumno_has_alarma" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_has_Seccion_Alumno1" Association="inacapbdModel.fk_Alumno_has_Seccion_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="alumno_has_seccion" EntitySet="alumno_has_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Asistencia_Alumno1" Association="inacapbdModel.fk_Asistencia_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Notas_Alumno1" Association="inacapbdModel.fk_Notas_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="nota" EntitySet="nota" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Pagos_Alumno1" Association="inacapbdModel.fk_Pagos_Alumno1">
+            <End Role="alumno" EntitySet="alumno" />
+            <End Role="pago" EntitySet="pago" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Alumno_has_Seccion_Seccion1" Association="inacapbdModel.fk_Alumno_has_Seccion_Seccion1">
+            <End Role="seccion" EntitySet="seccion" />
+            <End Role="alumno_has_seccion" EntitySet="alumno_has_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Asistencia_Alumno_has_Seccion1" Association="inacapbdModel.fk_Asistencia_Alumno_has_Seccion1">
+            <End Role="alumno_has_seccion" EntitySet="alumno_has_seccion" />
+            <End Role="asistencia" EntitySet="asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_Asignatura_Asignatura1" Association="inacapbdModel.fk_Carrera_has_Asignatura_Asignatura1">
+            <End Role="asignatura" EntitySet="asignatura" />
+            <End Role="carrera_asignatura" EntitySet="carrera_asignatura" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Materiales_Asignatura1" Association="inacapbdModel.fk_Materiales_Asignatura1">
+            <End Role="asignatura" EntitySet="asignatura" />
+            <End Role="material" EntitySet="material" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Seccion_Asignatura1" Association="inacapbdModel.fk_Seccion_Asignatura1">
+            <End Role="asignatura" EntitySet="asignatura" />
+            <End Role="seccion" EntitySet="seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_Asignatura_Carrera1" Association="inacapbdModel.fk_Carrera_has_Asignatura_Carrera1">
+            <End Role="carrera" EntitySet="carrera" />
+            <End Role="carrera_asignatura" EntitySet="carrera_asignatura" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_JefeCarrera_Carrera1" Association="inacapbdModel.fk_Carrera_has_JefeCarrera_Carrera1">
+            <End Role="carrera" EntitySet="carrera" />
+            <End Role="carrera_jefecarrera" EntitySet="carrera_jefecarrera" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Carrera_has_JefeCarrera_JefeCarrera1" Association="inacapbdModel.fk_Carrera_has_JefeCarrera_JefeCarrera1">
+            <End Role="jefecarrera" EntitySet="jefecarrera" />
+            <End Role="carrera_jefecarrera" EntitySet="carrera_jefecarrera" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Dia1" Association="inacapbdModel.fk_Horario_Dia1">
+            <End Role="dia" EntitySet="dia" />
+            <End Role="horario" EntitySet="horario" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Seccion_Docente1" Association="inacapbdModel.fk_Seccion_Docente1">
+            <End Role="docente" EntitySet="docente" />
+            <End Role="seccion" EntitySet="seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Seccion_Horario1" Association="inacapbdModel.fk_Horario_Seccion_Horario1">
+            <End Role="horario" EntitySet="horario" />
+            <End Role="horario_seccion" EntitySet="horario_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Seccion_Sala1" Association="inacapbdModel.fk_Horario_Seccion_Sala1">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="horario_seccion" EntitySet="horario_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horario_Seccion_Seccion1" Association="inacapbdModel.fk_Horario_Seccion_Seccion1">
+            <End Role="seccion" EntitySet="seccion" />
+            <End Role="horario_seccion" EntitySet="horario_seccion" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Horarios_has_Sala_Sala1" Association="inacapbdModel.fk_Horarios_has_Sala_Sala1">
+            <End Role="sala" EntitySet="sala" />
+            <End Role="horarios_has_sala" EntitySet="horarios_has_sala" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Notas_Seccion1" Association="inacapbdModel.fk_Notas_Seccion1">
+            <End Role="seccion" EntitySet="seccion" />
+            <End Role="nota" EntitySet="nota" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="alarma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Asunto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Dia_Hora" Type="DateTime" />
+          <NavigationProperty Name="alumno_has_alarma" Relationship="inacapbdModel.fk_Alumno_has_Alarma_Alarma1" FromRole="alarma" ToRole="alumno_has_alarma" />
+        </EntityType>
+        <EntityType Name="alumno">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Carrera_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="carrera" Relationship="inacapbdModel.fk_Alumno_Carrera" FromRole="alumno" ToRole="carrera" />
+          <NavigationProperty Name="alumno_has_alarma" Relationship="inacapbdModel.fk_Alumno_has_Alarma_Alumno1" FromRole="alumno" ToRole="alumno_has_alarma" />
+          <NavigationProperty Name="alumno_has_seccion" Relationship="inacapbdModel.fk_Alumno_has_Seccion_Alumno1" FromRole="alumno" ToRole="alumno_has_seccion" />
+          <NavigationProperty Name="asistencia" Relationship="inacapbdModel.fk_Asistencia_Alumno1" FromRole="alumno" ToRole="asistencia" />
+          <NavigationProperty Name="nota" Relationship="inacapbdModel.fk_Notas_Alumno1" FromRole="alumno" ToRole="nota" />
+          <NavigationProperty Name="pago" Relationship="inacapbdModel.fk_Pagos_Alumno1" FromRole="alumno" ToRole="pago" />
+        </EntityType>
+        <EntityType Name="alumno_has_alarma">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Alumno_Rut" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Alarma_Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="alarma" Relationship="inacapbdModel.fk_Alumno_has_Alarma_Alarma1" FromRole="alumno_has_alarma" ToRole="alarma" />
+          <NavigationProperty Name="alumno" Relationship="inacapbdModel.fk_Alumno_has_Alarma_Alumno1" FromRole="alumno_has_alarma" ToRole="alumno" />
+        </EntityType>
+        <EntityType Name="alumno_has_seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seccion_Id" Type="Int32" Nullable="false" />
+          <Property Name="Alumno_Rut" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alumno" Relationship="inacapbdModel.fk_Alumno_has_Seccion_Alumno1" FromRole="alumno_has_seccion" ToRole="alumno" />
+          <NavigationProperty Name="seccion" Relationship="inacapbdModel.fk_Alumno_has_Seccion_Seccion1" FromRole="alumno_has_seccion" ToRole="seccion" />
+          <NavigationProperty Name="asistencia" Relationship="inacapbdModel.fk_Asistencia_Alumno_has_Seccion1" FromRole="alumno_has_seccion" ToRole="asistencia" />
+        </EntityType>
+        <EntityType Name="asignatura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Horas" Type="Int32" />
+          <NavigationProperty Name="carrera_asignatura" Relationship="inacapbdModel.fk_Carrera_has_Asignatura_Asignatura1" FromRole="asignatura" ToRole="carrera_asignatura" />
+          <NavigationProperty Name="material" Relationship="inacapbdModel.fk_Materiales_Asignatura1" FromRole="asignatura" ToRole="material" />
+          <NavigationProperty Name="seccion" Relationship="inacapbdModel.fk_Seccion_Asignatura1" FromRole="asignatura" ToRole="seccion" />
+        </EntityType>
+        <EntityType Name="asistencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HorasAsist" Type="Int32" />
+          <Property Name="Alumno_Rut" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Alumno_has_Seccion_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="alumno" Relationship="inacapbdModel.fk_Asistencia_Alumno1" FromRole="asistencia" ToRole="alumno" />
+          <NavigationProperty Name="alumno_has_seccion" Relationship="inacapbdModel.fk_Asistencia_Alumno_has_Seccion1" FromRole="asistencia" ToRole="alumno_has_seccion" />
+        </EntityType>
+        <EntityType Name="carrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MontoAnual" Type="Int32" />
+          <NavigationProperty Name="alumno" Relationship="inacapbdModel.fk_Alumno_Carrera" FromRole="carrera" ToRole="alumno" />
+          <NavigationProperty Name="carrera_asignatura" Relationship="inacapbdModel.fk_Carrera_has_Asignatura_Carrera1" FromRole="carrera" ToRole="carrera_asignatura" />
+          <NavigationProperty Name="carrera_jefecarrera" Relationship="inacapbdModel.fk_Carrera_has_JefeCarrera_Carrera1" FromRole="carrera" ToRole="carrera_jefecarrera" />
+        </EntityType>
+        <EntityType Name="carrera_asignatura">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Carrera_Id" Type="Int32" Nullable="false" />
+          <Property Name="Asignatura_Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="asignatura" Relationship="inacapbdModel.fk_Carrera_has_Asignatura_Asignatura1" FromRole="carrera_asignatura" ToRole="asignatura" />
+          <NavigationProperty Name="carrera" Relationship="inacapbdModel.fk_Carrera_has_Asignatura_Carrera1" FromRole="carrera_asignatura" ToRole="carrera" />
+        </EntityType>
+        <EntityType Name="carrera_jefecarrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Carrera_Id" Type="Int32" Nullable="false" />
+          <Property Name="JefeCarrera_Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="carrera" Relationship="inacapbdModel.fk_Carrera_has_JefeCarrera_Carrera1" FromRole="carrera_jefecarrera" ToRole="carrera" />
+          <NavigationProperty Name="jefecarrera" Relationship="inacapbdModel.fk_Carrera_has_JefeCarrera_JefeCarrera1" FromRole="carrera_jefecarrera" ToRole="jefecarrera" />
+        </EntityType>
+        <EntityType Name="dia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dia_Semana" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="horario" Relationship="inacapbdModel.fk_Horario_Dia1" FromRole="dia" ToRole="horario" />
+        </EntityType>
+        <EntityType Name="docente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="seccion" Relationship="inacapbdModel.fk_Seccion_Docente1" FromRole="docente" ToRole="seccion" />
+        </EntityType>
+        <EntityType Name="horario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoraInicio" Type="Time" />
+          <Property Name="HoraFin" Type="Time" />
+          <Property Name="Dia_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="dia" Relationship="inacapbdModel.fk_Horario_Dia1" FromRole="horario" ToRole="dia" />
+          <NavigationProperty Name="horario_seccion" Relationship="inacapbdModel.fk_Horario_Seccion_Horario1" FromRole="horario" ToRole="horario_seccion" />
+        </EntityType>
+        <EntityType Name="horario_seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Horario_Id" Type="Int32" Nullable="false" />
+          <Property Name="Seccion_Id" Type="Int32" Nullable="false" />
+          <Property Name="Sala_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="horario" Relationship="inacapbdModel.fk_Horario_Seccion_Horario1" FromRole="horario_seccion" ToRole="horario" />
+          <NavigationProperty Name="sala" Relationship="inacapbdModel.fk_Horario_Seccion_Sala1" FromRole="horario_seccion" ToRole="sala" />
+          <NavigationProperty Name="seccion" Relationship="inacapbdModel.fk_Horario_Seccion_Seccion1" FromRole="horario_seccion" ToRole="seccion" />
+        </EntityType>
+        <EntityType Name="horarios_has_sala">
+          <Key>
+            <PropertyRef Name="Sala_Id" />
+          </Key>
+          <Property Name="Sala_Id" Type="Int32" Nullable="false" />
+          <Property Name="Horarios_has_Seccion_Horarios_Id" Type="Int32" Nullable="false" />
+          <Property Name="Horarios_has_Seccion_Seccion_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="sala" Relationship="inacapbdModel.fk_Horarios_has_Sala_Sala1" FromRole="horarios_has_sala" ToRole="sala" />
+        </EntityType>
+        <EntityType Name="jefecarrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="carrera_jefecarrera" Relationship="inacapbdModel.fk_Carrera_has_JefeCarrera_JefeCarrera1" FromRole="jefecarrera" ToRole="carrera_jefecarrera" />
+        </EntityType>
+        <EntityType Name="material">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Archivo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Asignatura_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="asignatura" Relationship="inacapbdModel.fk_Materiales_Asignatura1" FromRole="material" ToRole="asignatura" />
+        </EntityType>
+        <EntityType Name="nota">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nota1" Type="Decimal" />
+          <Property Name="Ponderacion" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" />
+          <Property Name="Alumno_Rut" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Seccion_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="alumno" Relationship="inacapbdModel.fk_Notas_Alumno1" FromRole="nota" ToRole="alumno" />
+          <NavigationProperty Name="seccion" Relationship="inacapbdModel.fk_Notas_Seccion1" FromRole="nota" ToRole="seccion" />
+        </EntityType>
+        <EntityType Name="pago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="FechaVenc" Type="DateTime" />
+          <Property Name="Concepto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Int32" />
+          <Property Name="Alumno_Rut" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="alumno" Relationship="inacapbdModel.fk_Pagos_Alumno1" FromRole="pago" ToRole="alumno" />
+        </EntityType>
+        <EntityType Name="sala">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Piso" Type="Int32" />
+          <NavigationProperty Name="horario_seccion" Relationship="inacapbdModel.fk_Horario_Seccion_Sala1" FromRole="sala" ToRole="horario_seccion" />
+          <NavigationProperty Name="horarios_has_sala" Relationship="inacapbdModel.fk_Horarios_has_Sala_Sala1" FromRole="sala" ToRole="horarios_has_sala" />
+        </EntityType>
+        <EntityType Name="seccion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int32" />
+          <Property Name="Docente_Id" Type="Int32" Nullable="false" />
+          <Property Name="Asignatura_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="alumno_has_seccion" Relationship="inacapbdModel.fk_Alumno_has_Seccion_Seccion1" FromRole="seccion" ToRole="alumno_has_seccion" />
+          <NavigationProperty Name="asignatura" Relationship="inacapbdModel.fk_Seccion_Asignatura1" FromRole="seccion" ToRole="asignatura" />
+          <NavigationProperty Name="docente" Relationship="inacapbdModel.fk_Seccion_Docente1" FromRole="seccion" ToRole="docente" />
+          <NavigationProperty Name="horario_seccion" Relationship="inacapbdModel.fk_Horario_Seccion_Seccion1" FromRole="seccion" ToRole="horario_seccion" />
+          <NavigationProperty Name="nota" Relationship="inacapbdModel.fk_Notas_Seccion1" FromRole="seccion" ToRole="nota" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_Alumno_has_Alarma_Alarma1">
+          <End Type="inacapbdModel.alarma" Role="alarma" Multiplicity="1" />
+          <End Type="inacapbdModel.alumno_has_alarma" Role="alumno_has_alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alarma">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alumno_has_alarma">
+              <PropertyRef Name="Alarma_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_Carrera">
+          <End Type="inacapbdModel.carrera" Role="carrera" Multiplicity="1" />
+          <End Type="inacapbdModel.alumno" Role="alumno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alumno">
+              <PropertyRef Name="Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_has_Alarma_Alumno1">
+          <End Type="inacapbdModel.alumno" Role="alumno" Multiplicity="1" />
+          <End Type="inacapbdModel.alumno_has_alarma" Role="alumno_has_alarma" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="alumno_has_alarma">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_has_Seccion_Alumno1">
+          <End Type="inacapbdModel.alumno" Role="alumno" Multiplicity="1" />
+          <End Type="inacapbdModel.alumno_has_seccion" Role="alumno_has_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="alumno_has_seccion">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Asistencia_Alumno1">
+          <End Type="inacapbdModel.alumno" Role="alumno" Multiplicity="1" />
+          <End Type="inacapbdModel.asistencia" Role="asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Notas_Alumno1">
+          <End Type="inacapbdModel.alumno" Role="alumno" Multiplicity="1" />
+          <End Type="inacapbdModel.nota" Role="nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="nota">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Pagos_Alumno1">
+          <End Type="inacapbdModel.alumno" Role="alumno" Multiplicity="1" />
+          <End Type="inacapbdModel.pago" Role="pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="pago">
+              <PropertyRef Name="Alumno_Rut" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Alumno_has_Seccion_Seccion1">
+          <End Type="inacapbdModel.seccion" Role="seccion" Multiplicity="1" />
+          <End Type="inacapbdModel.alumno_has_seccion" Role="alumno_has_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="alumno_has_seccion">
+              <PropertyRef Name="Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Asistencia_Alumno_has_Seccion1">
+          <End Type="inacapbdModel.alumno_has_seccion" Role="alumno_has_seccion" Multiplicity="1" />
+          <End Type="inacapbdModel.asistencia" Role="asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="alumno_has_seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="asistencia">
+              <PropertyRef Name="Alumno_has_Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_Asignatura_Asignatura1">
+          <End Type="inacapbdModel.asignatura" Role="asignatura" Multiplicity="1" />
+          <End Type="inacapbdModel.carrera_asignatura" Role="carrera_asignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignatura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_asignatura">
+              <PropertyRef Name="Asignatura_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Materiales_Asignatura1">
+          <End Type="inacapbdModel.asignatura" Role="asignatura" Multiplicity="1" />
+          <End Type="inacapbdModel.material" Role="material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignatura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="material">
+              <PropertyRef Name="Asignatura_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Seccion_Asignatura1">
+          <End Type="inacapbdModel.asignatura" Role="asignatura" Multiplicity="1" />
+          <End Type="inacapbdModel.seccion" Role="seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="asignatura">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="seccion">
+              <PropertyRef Name="Asignatura_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_Asignatura_Carrera1">
+          <End Type="inacapbdModel.carrera" Role="carrera" Multiplicity="1" />
+          <End Type="inacapbdModel.carrera_asignatura" Role="carrera_asignatura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_asignatura">
+              <PropertyRef Name="Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_JefeCarrera_Carrera1">
+          <End Type="inacapbdModel.carrera" Role="carrera" Multiplicity="1" />
+          <End Type="inacapbdModel.carrera_jefecarrera" Role="carrera_jefecarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_jefecarrera">
+              <PropertyRef Name="Carrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Carrera_has_JefeCarrera_JefeCarrera1">
+          <End Type="inacapbdModel.jefecarrera" Role="jefecarrera" Multiplicity="1" />
+          <End Type="inacapbdModel.carrera_jefecarrera" Role="carrera_jefecarrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jefecarrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carrera_jefecarrera">
+              <PropertyRef Name="JefeCarrera_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Dia1">
+          <End Type="inacapbdModel.dia" Role="dia" Multiplicity="1" />
+          <End Type="inacapbdModel.horario" Role="horario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario">
+              <PropertyRef Name="Dia_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Seccion_Docente1">
+          <End Type="inacapbdModel.docente" Role="docente" Multiplicity="1" />
+          <End Type="inacapbdModel.seccion" Role="seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="docente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="seccion">
+              <PropertyRef Name="Docente_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Seccion_Horario1">
+          <End Type="inacapbdModel.horario" Role="horario" Multiplicity="1" />
+          <End Type="inacapbdModel.horario_seccion" Role="horario_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="horario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario_seccion">
+              <PropertyRef Name="Horario_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Seccion_Sala1">
+          <End Type="inacapbdModel.sala" Role="sala" Multiplicity="1" />
+          <End Type="inacapbdModel.horario_seccion" Role="horario_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario_seccion">
+              <PropertyRef Name="Sala_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horario_Seccion_Seccion1">
+          <End Type="inacapbdModel.seccion" Role="seccion" Multiplicity="1" />
+          <End Type="inacapbdModel.horario_seccion" Role="horario_seccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horario_seccion">
+              <PropertyRef Name="Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Horarios_has_Sala_Sala1">
+          <End Type="inacapbdModel.sala" Role="sala" Multiplicity="1" />
+          <End Type="inacapbdModel.horarios_has_sala" Role="horarios_has_sala" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="sala">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="horarios_has_sala">
+              <PropertyRef Name="Sala_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Notas_Seccion1">
+          <End Type="inacapbdModel.seccion" Role="seccion" Multiplicity="1" />
+          <End Type="inacapbdModel.nota" Role="nota" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seccion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="nota">
+              <PropertyRef Name="Seccion_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="inacapbdModelStoreContainer" CdmEntityContainer="BD">
+          <EntitySetMapping Name="alarma">
+            <EntityTypeMapping TypeName="inacapbdModel.alarma">
+              <MappingFragment StoreEntitySet="alarma">
+                <ScalarProperty Name="Dia_Hora" ColumnName="Dia_Hora" />
+                <ScalarProperty Name="Asunto" ColumnName="Asunto" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alumno">
+            <EntityTypeMapping TypeName="inacapbdModel.alumno">
+              <MappingFragment StoreEntitySet="alumno">
+                <ScalarProperty Name="Carrera_Id" ColumnName="Carrera_Id" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alumno_has_alarma">
+            <EntityTypeMapping TypeName="inacapbdModel.alumno_has_alarma">
+              <MappingFragment StoreEntitySet="alumno_has_alarma">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Alarma_Id" ColumnName="Alarma_Id" />
+                <ScalarProperty Name="Alumno_Rut" ColumnName="Alumno_Rut" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="alumno_has_seccion">
+            <EntityTypeMapping TypeName="inacapbdModel.alumno_has_seccion">
+              <MappingFragment StoreEntitySet="alumno_has_seccion">
+                <ScalarProperty Name="Alumno_Rut" ColumnName="Alumno_Rut" />
+                <ScalarProperty Name="Seccion_Id" ColumnName="Seccion_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="asignatura">
+            <EntityTypeMapping TypeName="inacapbdModel.asignatura">
+              <MappingFragment StoreEntitySet="asignatura">
+                <ScalarProperty Name="Horas" ColumnName="Horas" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="asistencia">
+            <EntityTypeMapping TypeName="inacapbdModel.asistencia">
+              <MappingFragment StoreEntitySet="asistencia">
+                <ScalarProperty Name="Alumno_has_Seccion_Id" ColumnName="Alumno_has_Seccion_Id" />
+                <ScalarProperty Name="Alumno_Rut" ColumnName="Alumno_Rut" />
+                <ScalarProperty Name="HorasAsist" ColumnName="HorasAsist" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carrera">
+            <EntityTypeMapping TypeName="inacapbdModel.carrera">
+              <MappingFragment StoreEntitySet="carrera">
+                <ScalarProperty Name="MontoAnual" ColumnName="MontoAnual" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carrera_asignatura">
+            <EntityTypeMapping TypeName="inacapbdModel.carrera_asignatura">
+              <MappingFragment StoreEntitySet="carrera_asignatura">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Asignatura_Id" ColumnName="Asignatura_Id" />
+                <ScalarProperty Name="Carrera_Id" ColumnName="Carrera_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="carrera_jefecarrera">
+            <EntityTypeMapping TypeName="inacapbdModel.carrera_jefecarrera">
+              <MappingFragment StoreEntitySet="carrera_jefecarrera">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="JefeCarrera_Id" ColumnName="JefeCarrera_Id" />
+                <ScalarProperty Name="Carrera_Id" ColumnName="Carrera_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dia">
+            <EntityTypeMapping TypeName="inacapbdModel.dia">
+              <MappingFragment StoreEntitySet="dia">
+                <ScalarProperty Name="Dia_Semana" ColumnName="Dia_Semana" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="docente">
+            <EntityTypeMapping TypeName="inacapbdModel.docente">
+              <MappingFragment StoreEntitySet="docente">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horario">
+            <EntityTypeMapping TypeName="inacapbdModel.horario">
+              <MappingFragment StoreEntitySet="horario">
+                <ScalarProperty Name="Dia_Id" ColumnName="Dia_Id" />
+                <ScalarProperty Name="HoraFin" ColumnName="HoraFin" />
+                <ScalarProperty Name="HoraInicio" ColumnName="HoraInicio" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horario_seccion">
+            <EntityTypeMapping TypeName="inacapbdModel.horario_seccion">
+              <MappingFragment StoreEntitySet="horario_seccion">
+                <ScalarProperty Name="Sala_Id" ColumnName="Sala_Id" />
+                <ScalarProperty Name="Seccion_Id" ColumnName="Seccion_Id" />
+                <ScalarProperty Name="Horario_Id" ColumnName="Horario_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="horarios_has_sala">
+            <EntityTypeMapping TypeName="inacapbdModel.horarios_has_sala">
+              <MappingFragment StoreEntitySet="horarios_has_sala">
+                <ScalarProperty Name="Horarios_has_Seccion_Seccion_Id" ColumnName="Horarios_has_Seccion_Seccion_Id" />
+                <ScalarProperty Name="Horarios_has_Seccion_Horarios_Id" ColumnName="Horarios_has_Seccion_Horarios_Id" />
+                <ScalarProperty Name="Sala_Id" ColumnName="Sala_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jefecarrera">
+            <EntityTypeMapping TypeName="inacapbdModel.jefecarrera">
+              <MappingFragment StoreEntitySet="jefecarrera">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="material">
+            <EntityTypeMapping TypeName="inacapbdModel.material">
+              <MappingFragment StoreEntitySet="material">
+                <ScalarProperty Name="Asignatura_Id" ColumnName="Asignatura_Id" />
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="nota">
+            <EntityTypeMapping TypeName="inacapbdModel.nota">
+              <MappingFragment StoreEntitySet="nota">
+                <ScalarProperty Name="Seccion_Id" ColumnName="Seccion_Id" />
+                <ScalarProperty Name="Alumno_Rut" ColumnName="Alumno_Rut" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Ponderacion" ColumnName="Ponderacion" />
+                <ScalarProperty Name="Nota1" ColumnName="Nota" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pago">
+            <EntityTypeMapping TypeName="inacapbdModel.pago">
+              <MappingFragment StoreEntitySet="pago">
+                <ScalarProperty Name="Alumno_Rut" ColumnName="Alumno_Rut" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="FechaVenc" ColumnName="FechaVenc" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sala">
+            <EntityTypeMapping TypeName="inacapbdModel.sala">
+              <MappingFragment StoreEntitySet="sala">
+                <ScalarProperty Name="Piso" ColumnName="Piso" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="seccion">
+            <EntityTypeMapping TypeName="inacapbdModel.seccion">
+              <MappingFragment StoreEntitySet="seccion">
+                <ScalarProperty Name="Asignatura_Id" ColumnName="Asignatura_Id" />
+                <ScalarProperty Name="Docente_Id" ColumnName="Docente_Id" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuario">
+            <EntityTypeMapping TypeName="inacapbdModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

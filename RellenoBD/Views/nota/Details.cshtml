@@ -1,0 +1,57 @@
+﻿@model RellenoBD.nota
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalles de Nota</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nota
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nota1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ponderacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ponderacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.alumno.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alumno.Nombre)
+        </dd>
+
+        <dt>
+            Seccion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seccion.Id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver a Lista", "Index")
+</p>

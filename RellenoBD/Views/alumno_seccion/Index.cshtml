@@ -1,0 +1,39 @@
+﻿@model IEnumerable<RellenoBD.alumno_has_seccion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Seccion Alumno</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Alumno
+        </th>
+        <th>
+            Seccion
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.alumno.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.seccion.Numero)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

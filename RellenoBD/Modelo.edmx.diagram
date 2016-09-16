@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ec4f2741c5dc4fbda936aa044a337684" Name="Diagram1" ZoomLevel="77">
+        <EntityTypeShape EntityType="inacapbdModel.alarma" Width="1.5" PointX="3" PointY="18.625" />
+        <EntityTypeShape EntityType="inacapbdModel.alumno" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="inacapbdModel.alumno_has_alarma" Width="1.5" PointX="5.25" PointY="11.5" />
+        <EntityTypeShape EntityType="inacapbdModel.alumno_has_seccion" Width="1.5" PointX="5.25" PointY="14.375" />
+        <EntityTypeShape EntityType="inacapbdModel.asignatura" Width="1.5" PointX="0.75" PointY="6" />
+        <EntityTypeShape EntityType="inacapbdModel.asistencia" Width="1.5" PointX="10.5" PointY="14.375" />
+        <EntityTypeShape EntityType="inacapbdModel.carrera" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="inacapbdModel.carrera_asignatura" Width="1.5" PointX="3" PointY="6.125" />
+        <EntityTypeShape EntityType="inacapbdModel.carrera_jefecarrera" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="inacapbdModel.dia" Width="1.5" PointX="0.75" PointY="30.125" />
+        <EntityTypeShape EntityType="inacapbdModel.docente" Width="1.5" PointX="0.75" PointY="22.625" />
+        <EntityTypeShape EntityType="inacapbdModel.horario" Width="1.5" PointX="3" PointY="29.75" />
+        <EntityTypeShape EntityType="inacapbdModel.horario_seccion" Width="1.5" PointX="5.25" PointY="19.375" />
+        <EntityTypeShape EntityType="inacapbdModel.horarios_has_sala" Width="1.5" PointX="5.25" PointY="27.125" />
+        <EntityTypeShape EntityType="inacapbdModel.jefecarrera" Width="1.5" PointX="0.75" PointY="12.125" />
+        <EntityTypeShape EntityType="inacapbdModel.material" Width="1.5" PointX="3" PointY="3.125" />
+        <EntityTypeShape EntityType="inacapbdModel.nota" Width="1.5" PointX="8.25" PointY="14.25" />
+        <EntityTypeShape EntityType="inacapbdModel.pago" Width="1.5" PointX="5.25" PointY="23.25" />
+        <EntityTypeShape EntityType="inacapbdModel.sala" Width="1.5" PointX="3" PointY="27.125" />
+        <EntityTypeShape EntityType="inacapbdModel.seccion" Width="1.5" PointX="3" PointY="22.125" />
+        <EntityTypeShape EntityType="inacapbdModel.usuario" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="inacapbdModel.fk_Alumno_has_Alarma_Alarma1" />
+        <AssociationConnector Association="inacapbdModel.fk_Alumno_Carrera" />
+        <AssociationConnector Association="inacapbdModel.fk_Alumno_has_Alarma_Alumno1" />
+        <AssociationConnector Association="inacapbdModel.fk_Alumno_has_Seccion_Alumno1" />
+        <AssociationConnector Association="inacapbdModel.fk_Asistencia_Alumno1" />
+        <AssociationConnector Association="inacapbdModel.fk_Notas_Alumno1" />
+        <AssociationConnector Association="inacapbdModel.fk_Pagos_Alumno1" />
+        <AssociationConnector Association="inacapbdModel.fk_Alumno_has_Seccion_Seccion1" />
+        <AssociationConnector Association="inacapbdModel.fk_Asistencia_Alumno_has_Seccion1" />
+        <AssociationConnector Association="inacapbdModel.fk_Carrera_has_Asignatura_Asignatura1" />
+        <AssociationConnector Association="inacapbdModel.fk_Materiales_Asignatura1" />
+        <AssociationConnector Association="inacapbdModel.fk_Seccion_Asignatura1" />
+        <AssociationConnector Association="inacapbdModel.fk_Carrera_has_Asignatura_Carrera1" />
+        <AssociationConnector Association="inacapbdModel.fk_Carrera_has_JefeCarrera_Carrera1" />
+        <AssociationConnector Association="inacapbdModel.fk_Carrera_has_JefeCarrera_JefeCarrera1" />
+        <AssociationConnector Association="inacapbdModel.fk_Horario_Dia1" />
+        <AssociationConnector Association="inacapbdModel.fk_Seccion_Docente1" />
+        <AssociationConnector Association="inacapbdModel.fk_Horario_Seccion_Horario1" />
+        <AssociationConnector Association="inacapbdModel.fk_Horario_Seccion_Sala1" />
+        <AssociationConnector Association="inacapbdModel.fk_Horario_Seccion_Seccion1" />
+        <AssociationConnector Association="inacapbdModel.fk_Horarios_has_Sala_Sala1" />
+        <AssociationConnector Association="inacapbdModel.fk_Notas_Seccion1" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
